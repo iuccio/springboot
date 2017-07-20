@@ -18,13 +18,13 @@ public class GreetingRepository {
     private JdbcTemplate jdbcTemplate;
 
     public Customer getCustomerByName(String name){
-        log.info("Querying for customer records where first_name =" + name );
+        log.info("Querying for customer records where firstname =" + name );
 
         List<Customer> customerList = jdbcTemplate.query(
-                "SELECT id, first_name, last_name FROM customers WHERE first_name = ?",
+                "SELECT id, firstname, lastname FROM customers WHERE firstname = ?",
                 new Object[]{name},
                 (rs, rowNum) ->
-                        new Customer(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name")));
+                        new Customer(rs.getLong("id"), rs.getString("firstname"), rs.getString("lastname")));
         return customerList.get(0);
     }
 

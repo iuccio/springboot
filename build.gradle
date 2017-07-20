@@ -1,15 +1,23 @@
 buildscript {
+
+    ext {
+        springBootVersion = '1.5.4.RELEASE'
+    }
+
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
+plugins {
+    id 'org.flywaydb.flyway' version '4.2.0'
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
+    id 'java'
+    id 'idea'
+}
 
 jar {
     baseName = 'springboot'
@@ -28,9 +36,18 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-jersey'
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
 
+    compile 'org.flywaydb:flyway-core:4.0.3'
+
     runtime 'org.postgresql:postgresql'
 
     testCompile "junit:junit"
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
+flyway {
+    url = 'jdbc:postgresql://localhost:5433/postgres'
+    user = 'postgres'
+    password = 'rebel'
+    schemas = ['public']
+    locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
+}
