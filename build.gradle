@@ -9,6 +9,9 @@ buildscript {
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        // tag::build[]
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+        // end::build[]
     }
 }
 
@@ -18,6 +21,11 @@ plugins {
     id 'java'
     id 'idea'
 }
+
+apply plugin: 'docker'
+
+// This is used as the docker image prefix (org)
+group = 'iuccio'
 
 jar {
     baseName = 'springboot'
@@ -54,4 +62,16 @@ flyway {
     password = flyway.password
     schemas = flyway.schemas
     locations = flyway.locations
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+    push = false
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into "build/docker/target"
+        }
+    }
 }
