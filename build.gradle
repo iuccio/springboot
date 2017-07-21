@@ -21,7 +21,7 @@ plugins {
 
 jar {
     baseName = 'springboot'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
 
 repositories {
@@ -45,9 +45,13 @@ dependencies {
 }
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5433/postgres'
-    user = 'postgres'
-    password = 'rebel'
-    schemas = ['public']
-    locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
+
+    def flyway = new Properties()
+    file("flyway.properties").withInputStream { flyway.load(it) }
+
+    url = flyway.url
+    user = flyway.user
+    password = flyway.password
+    schemas = flyway.schemas
+    locations = flyway.locations
 }

@@ -25,6 +25,11 @@ public class GreetingRepository {
                 new Object[]{name},
                 (rs, rowNum) ->
                         new Customer(rs.getLong("id"), rs.getString("firstname"), rs.getString("lastname")));
+
+        if(customerList.isEmpty()){
+            return null;
+        }
+
         return customerList.get(0);
     }
 
