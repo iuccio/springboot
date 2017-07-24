@@ -67,7 +67,7 @@ flyway {
 task buildDocker(type: Docker, dependsOn: build) {
     push = false
     applicationName = jar.baseName
-    dockerfile = file('Dockerfile')
+    dockerfile = file('./docker/app/Dockerfile')
     doFirst {
         copy {
             from jar
