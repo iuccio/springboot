@@ -16,7 +16,6 @@ pipeline {
         stage('Build Docker') {
             steps {
                 echo 'Build Docker....'
-                docker.build("iuccio/springboot")
             }
         }
     }
