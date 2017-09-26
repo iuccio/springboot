@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+               sh 'java -version'
+               sh 'gradle --version'
+               sh 'gradle -version'
             }
         }
         stage('Test') {
