@@ -2,21 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Checkout'){
             steps {
-               sh 'java -version'
-               sh 'gradle --version'
-               sh 'gradle -version'
+               echo 'Checkout source code....'
+               git url: "https://github.com/iuccio/springboot.git"
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+               echo 'Test....'
+               sh "./gradlew clean test"
             }
         }
-        stage('Deploy') {
+        stage('Build Docker') {
             steps {
-                echo 'Deploying....'
+                echo 'Build Docker....'
+                sh "./gradlew buildDocker"
             }
         }
     }
