@@ -8,8 +8,8 @@ import static org.hamcrest.Matchers.is;
 public class GreetingTest {
 
     @Test
-    private void shouldTest(){
-        assertThat("true", is("false"));
+    public void shouldTest(){
+        assertThat("true", is("true"));
     }
 
 }
