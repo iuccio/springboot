@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout'){
             steps {
@@ -17,7 +16,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 echo 'Build Docker....'
-                sh "./gradlew buildDocker"
+                docker.build("iuccio/springboot")
             }
         }
     }
