@@ -29,6 +29,8 @@ pipeline {
       always {
          archive "target/**/*"
          junit allowEmptyResults: true, keepLongStdio: true, testResults: 'build/test-results/test/*.xml'
+         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/reports/tests/test/', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+      
          // Wipe the workspace so we are building completely clean
          //deleteDir();
       }
