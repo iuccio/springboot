@@ -1,12 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout'){
-            steps {
-               echo 'Checkout source code....'
-               git url: "https://github.com/iuccio/springboot.git"
-            }
-        }
         stage('Test') {
             steps {
                echo 'Test....'
