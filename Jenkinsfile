@@ -1,7 +1,13 @@
 #!groovy
 
 pipeline {
+
     agent any
+
+    triggers {
+        pollSCM('H/5 * * * *')
+        cron('@midnight')
+    }
 
     stages {
         stage('Test') {
@@ -40,7 +46,7 @@ pipeline {
     options {
         // We'd like to make sure we only keep 10 builds at a time, so
         // we don't fill up our storage!
-        buildDiscarder(logRotator(numToKeepStr:'10'))
+        buildDiscarder(logRotator(numToKeepStr:'5'))
 
         // And we'd really like to be sure that this build doesn't hang forever, so
         // let's time it out after an hour.
