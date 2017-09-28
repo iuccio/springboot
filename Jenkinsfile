@@ -1,7 +1,6 @@
 #!groovy
 
 pipeline {
-
     agent any
 
     triggers {
@@ -10,6 +9,7 @@ pipeline {
     }
 
     stages {
+
         stage('Test') {
             steps {
                echo 'Test....'
