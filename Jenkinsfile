@@ -27,15 +27,16 @@ pipeline {
     post {
       // Always runs. And it runs before any of the other post conditions.
       always {
-        // Wipe the workspace so we are building completely clean
-          
          archive "target/**/*"
          junit allowEmptyResults: true, keepLongStdio: true, testResults: 'build/test-results/test/*.xml'
-        //deleteDir();
+         // Wipe the workspace so we are building completely clean
+         deleteDir();
       }
 
       success {
              echo 'Success....'
+             archiveArtifacts 'build/libs/*.jar'
+             echo 'Archive artifacts....'
             //mail(from: "bob@example.com", to: "steve@example.com", subject: "That build passed.", body: "Nothing to see here")
       }
 
