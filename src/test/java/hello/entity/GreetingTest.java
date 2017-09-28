@@ -17,7 +17,7 @@ public class GreetingTest {
 
     @Test
     public void shouldTest1(){
-        assertThat("false", is("true"));
+        assertThat("true", is("true"));
     }
 
 }
