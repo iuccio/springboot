@@ -30,7 +30,7 @@ pipeline {
          archive "target/**/*"
          junit allowEmptyResults: true, keepLongStdio: true, testResults: 'build/test-results/test/*.xml'
          // Wipe the workspace so we are building completely clean
-         deleteDir();
+         //deleteDir();
       }
 
       success {
