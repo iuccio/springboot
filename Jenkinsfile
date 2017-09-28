@@ -1,3 +1,5 @@
+#!groovy
+
 pipeline {
     agent any
 
@@ -25,23 +27,17 @@ pipeline {
 
       success {
              echo 'Success....'
-            //mail(from: "bob@example.com",
-            //     to: "steve@example.com",
-            //     subject: "That build passed.",
-            //     body: "Nothing to see here")
+            //mail(from: "bob@example.com", to: "steve@example.com", subject: "That build passed.", body: "Nothing to see here")
       }
 
       failure {
              echo 'Failure....'
-            //mail(from: "bob@example.com",
-            //     to: "steve@example.com",
-            //     subject: "That build failed!",
-            //     body: "Nothing to see here")
+            //mail(from: "bob@example.com", to: "steve@example.com", subject: "That build failed!", body: "Nothing to see here")
       }
     }
 
-      // The options directive is for configuration that applies to the whole job.
-      options {
+    // The options directive is for configuration that applies to the whole job.
+    options {
         // We'd like to make sure we only keep 10 builds at a time, so
         // we don't fill up our storage!
         buildDiscarder(logRotator(numToKeepStr:'10'))
@@ -49,5 +45,5 @@ pipeline {
         // And we'd really like to be sure that this build doesn't hang forever, so
         // let's time it out after an hour.
         timeout(time: 10, unit: 'MINUTES')
-      }
+    }
 }
