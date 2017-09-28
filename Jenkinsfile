@@ -30,7 +30,7 @@ pipeline {
         // Wipe the workspace so we are building completely clean
           
          archive "target/**/*"
-         //junit 'target/surefire-reports/*.xml'
+         junit allowEmptyResults: true, keepLongStdio: true, testResults: 'build/test-results/test/*.xml'
         //deleteDir();
       }
 
