@@ -28,7 +28,10 @@ pipeline {
       // Always runs. And it runs before any of the other post conditions.
       always {
         // Wipe the workspace so we are building completely clean
-        deleteDir();
+          
+         archive "target/**/*"
+         junit 'target/surefire-reports/*.xml'
+        //deleteDir();
       }
 
       success {
