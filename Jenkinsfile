@@ -37,11 +37,15 @@ pipeline {
              echo 'Success....'
              archiveArtifacts 'build/libs/*.jar'
              echo 'Archive artifacts....'
+             echo 'Clean Workspace....'
+             cleanWs()
             //mail(from: "bob@example.com", to: "steve@example.com", subject: "That build passed.", body: "Nothing to see here")
       }
 
       failure {
-             echo 'Failure....'
+              echo 'Failure....'
+              echo 'Clean Workspace....'
+              cleanWs()
             //mail(from: "bob@example.com", to: "steve@example.com", subject: "That build failed!", body: "Nothing to see here")
       }
     }
