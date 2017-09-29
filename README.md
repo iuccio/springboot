@@ -1,5 +1,4 @@
 # Springboot example
-
 ## Postgresql
 * Build postgresql container from Dockerfile:
     * go to the folder **docker/db** and in terminal type:
