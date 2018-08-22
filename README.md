@@ -1,4 +1,4 @@
-# Springboot example
+# Springboot example [![Build Status](https://travis-ci.org/iuccio/springboot.svg?branch=master)](https://travis-ci.org/iuccio/springboot)
 ## Postgresql
 * Build postgresql container from Dockerfile:
     * go to the folder **docker/db** and in terminal type:
